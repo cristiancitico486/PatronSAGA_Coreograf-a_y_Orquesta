@@ -1,0 +1,25 @@
+server:
+  servlet:
+    encoding:
+      # Content-Type con charset=UTF-8 (PowerShell 5.1 asume ISO-8859-1 si falta)
+      force: true
+  port: 8080
+
+spring:
+  application:
+    name: orquestador
+
+temporal:
+  # Servidor de desarrollo local: temporal server start-dev
+  target: localhost:7233
+  namespace: default
+  task-queue: RESERVA_VIAJES_TQ
+  # Con false la instancia solo expone la API (útil para matar el worker sin perder la API)
+  worker-habilitado: true
+
+servicios:
+  vuelos: http://localhost:8081/api/vuelos
+  hoteles: http://localhost:8082/api/hoteles
+  autos: http://localhost:8083/api/autos
+  pagos: http://localhost:8084/api/pagos
+  notificaciones: http://localhost:8085/api/notificaciones
